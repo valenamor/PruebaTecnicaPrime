@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Participant;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\ParticipantsExport;
+use App\Models\Participant;
 
 class ParticipantController extends Controller
 {
@@ -22,8 +20,17 @@ class ParticipantController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'id' => 'required|string|unique:participants,id',
+            'nombre' => 'required|string|max:255',
+            'fecha_nacimiento' => 'required|date',
+            'genero' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:participants,email',
+            'score' => 'required|integer',
+        ]);
+
         Participant::create($request->all());
-        return redirect()->route('participants.index');
+        return redirect()->route('participants.index')->with('success', 'Participante creado exitosamente.');
     }
 
     public function edit($id)
@@ -34,20 +41,24 @@ class ParticipantController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'id' => 'required|unique:participants,id,' . $id,
+            'nombre' => 'required',
+            'fecha_nacimiento' => 'required|date',
+            'genero' => 'required',
+            'email' => 'required|email',
+            'score' => 'required|numeric',
+        ]);
+
         $participant = Participant::findOrFail($id);
         $participant->update($request->all());
-        return redirect()->route('participants.index');
+        return redirect()->route('participants.index')->with('success', 'Participante actualizado exitosamente.');
     }
 
     public function destroy($id)
     {
         $participant = Participant::findOrFail($id);
         $participant->delete();
-        return redirect()->route('participants.index');
-    }
-
-    public function export()
-    {
-        return Excel::download(new ParticipantsExport, 'participants.xlsx');
+        return redirect()->route('participants.index')->with('success', 'Participante eliminado exitosamente.');
     }
 }

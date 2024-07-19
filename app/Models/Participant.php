@@ -10,11 +10,10 @@ class Participant extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id',
-        'nombre',
-        'fecha_nacimiento',
-        'genero',
-        'email',
-        'score',
+        'id', 'nombre', 'fecha_nacimiento', 'genero', 'email', 'score'
     ];
+
+    public $incrementing = false;
+    protected $keyType = 'string';
 }
+

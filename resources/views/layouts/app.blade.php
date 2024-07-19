@@ -20,10 +20,19 @@
                         <a class="nav-link" href="{{ url('/participants/create') }}"><i class="fas fa-user-plus"></i> Añadir Participante</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/') }}"><i class="fas fa-sign-in-alt"></i> Iniciar sesión</a>
+                        <a class="nav-link" href="{{ url('/') }}"><i class="fas fa-list"></i> Lista de participantes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('participants.export') }}"><i class="fas fa-file-export"></i> Exportar Participantes</a>
+                        <a class="nav-link" href="{{ route('participants.export') }}"><i class="fas fa-file-export"></i> Descargar Reporte</a>
+                    </li>
+                    <li class="nav-item">
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                        <a class="nav-link" href="{{ route('logout') }}"
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
                     </li>
                 </ul>
             </div>

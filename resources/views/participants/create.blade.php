@@ -6,30 +6,30 @@
     <form action="{{ route('participants.store') }}" method="POST">
         @csrf
         <div class="mb-3">
-            <label for="name" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="name" name="name" required>
+            <label for="id" class="form-label">ID</label>
+            <input type="text" class="form-control" id="id" name="id" required>
         </div>
         <div class="mb-3">
-            <label for="birthdate" class="form-label">Fecha de Nacimiento</label>
-            <input type="date" class="form-control" id="birthdate" name="birthdate" required>
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" required>
         </div>
         <div class="mb-3">
-            <label for="gender" class="form-label">Género</label>
-            <select class="form-control" id="gender" name="gender" required>
-                <option value="male">Masculino</option>
-                <option value="female">Femenino</option>
-                <option value="other">Otro</option>
-            </select>
+            <label for="fecha_nacimiento" class="form-label">Fecha de Nacimiento</label>
+            <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" required>
         </div>
         <div class="mb-3">
-            <label for="email" class="form-label">Correo Electrónico</label>
+            <label for="genero" class="form-label">Género</label>
+            <input type="text" class="form-control" id="genero" name="genero" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" id="email" name="email" required>
         </div>
         <div class="mb-3">
             <label for="score" class="form-label">Puntaje</label>
             <input type="number" class="form-control" id="score" name="score" required>
         </div>
-        <button type="submit" class="btn btn-primary">Añadir</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
 </div>
 @endsection
